@@ -53,7 +53,7 @@ function parkSearch(input) {
 
 
     // Function for organizing dynamic cards 
-function resultElementHandler () {
+function resultElementHandler1 () {
     const targetButtonIdName = event.target.id.split("-")[0]
     const targetButtonIdNumber = event.target.id.split("-")[1]
     console.log(event.target.id)
