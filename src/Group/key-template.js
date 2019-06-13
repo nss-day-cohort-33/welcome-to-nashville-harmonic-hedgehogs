@@ -15,6 +15,6 @@ const app_keys = [{
     },
     //meetup keys
     {
-        app_id: "VnE9stSNwygAmLL6",
-        app_key: "lhh9jxGbwAZ2W1KcKXmG2Dy4bQCchn5O"
+        app_id: "",
+        app_key: ""
     }]

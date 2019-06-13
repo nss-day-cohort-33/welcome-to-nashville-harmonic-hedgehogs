@@ -55,9 +55,9 @@ document.querySelector("#food-button").addEventListener("click", () => {
     .then( restData => restData.json())
     .then( rest => {
         
-        //Loop through and pull name and address of first 10 results from search
         document.querySelector("#results").innerHTML = ""
- 
+        
+        //Loop through and pull name and address of first 10 results from search
         for(let i=0; i < 10; i++) {
             // console.log('first parameter', foodHTML(rest), 'i', i)
             uniqueID++
