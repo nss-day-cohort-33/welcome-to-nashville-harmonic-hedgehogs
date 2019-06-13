@@ -58,9 +58,12 @@ function resultElementHandler () {
     const removeButton = document.getElementById(`remove-${targetButtonIdNumber}`)
     
     if (targetButtonIdName === "add") {
+        console.log(card)
+        document.querySelector("#concert-itinerary").innerHTML = ""
         document.querySelector("#concert-itinerary").appendChild(card)
         addButton.classList.add("hide") 
         removeButton.classList.remove("hide") 
+        
        
     } else if (targetButtonIdName === "remove") {
         document.querySelector("#concert-results").prepend(card)
