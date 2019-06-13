@@ -4,7 +4,7 @@ const concertsButton = document.querySelector("#concerts-button")
 // Event listener for concert search button, pulls in API data and calls print function 
 concertsButton.addEventListener("click", () => {
     console.log(concertsButton.value)
-    fetch(`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=343&keyword=${concertsInput.value}&apikey=${app_keys[3].app_key}`)
+    fetch(`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=343&keyword=${concertsInput.value}&apikey=${app_keys[3].app_key}&size=6`)
         .then(response => response.json())
         .then(concertData => {
             document.querySelector("#concert-results").innerHTML = ""
@@ -34,16 +34,17 @@ let num = 0;
 function createConcertResults(concertObject) {
     num++
     return `
-    <article id="card-${num}">
-        <h3>${concertObject.name}</h3>
-        <img src="${concertObject.images[0].url}" width= "250px">
+    <figure id="card-${num}">
+        <img src="${concertObject.images[0].url}">
+        <figcaption><h3>${concertObject.name}</h3></figcaption>
         <p>${concertObject.dates.start.localDate}</p>
         <p>${concertObject._embedded.venues[0].name}</p>
+        <p><a href=${concertObject.url}>Get tickets</a></p>
          
         <button id="add-${num}">add</button>
         <button class="hide" id="remove-${num}">remove</button>
         
-    </article>
+    </figure>
     `
 }
 
