@@ -10,15 +10,14 @@ document.querySelector("#parks-button").addEventListener("click", () => {
 function parksToDom(parksinfo, element) {
     document.querySelector(`#parks-results`).innerHTML += parksinfo
 }
-//this function allows the data from the API to show on the DOM
-
+//this function allows the data from the API to show on the DOM in HTML format
 
 function parksHTMLLayout(parksObj) {
     num++
     return `
     <figure id="card-${num}">
     <h3>Park Name: ${parksObj.park_name}</h3>
-    <h4>Park Address ${parksObj.mapped_location_address}</h4>
+    <h4>Park Address: ${parksObj.mapped_location_address}</h4>
 
     <button id="add-${num}">I'm Going!</button>
     <button class ="hide" id="remove-${num}">Changed my Mind</button>
