@@ -8,7 +8,7 @@ document.querySelector("#parks-button").addEventListener("click", () => {
 });
 //this targets where on the DOM to push the data to and have it keep adding 
 function parksToDom(parksinfo, element) {
-    document.querySelector(`#parks-results`).innerHTML += parksinfo
+    document.querySelector("#results").innerHTML += parksinfo
 }
 //this function allows the data from the API to show on the DOM in HTML format
 
@@ -36,7 +36,7 @@ function parkSearch(input) {
         .then(parksResults => {
             parksResults.forEach(park => {
                 
-                document.querySelector("#parks-results").innerHTML = ""
+                document.querySelector("#results").innerHTML = ""
             })
             console.log('parkresults1', parksResults)
             for (let i = 0; i <= 10; i++) {
@@ -53,7 +53,7 @@ function parkSearch(input) {
 
 
     // Function for organizing dynamic cards 
-function resultElementHandler1 () {
+function resultElementHandler () {
     const targetButtonIdName = event.target.id.split("-")[0]
     const targetButtonIdNumber = event.target.id.split("-")[1]
     console.log(event.target.id)
@@ -66,7 +66,7 @@ function resultElementHandler1 () {
     // If button ID contains "add", clear itinerary div, append card, and show removeButton/hide addButton 
     if (targetButtonIdName === "add") {
         console.log(targetButtonIdName) 
-        document.querySelector("#parks-itinerary").innerHTML = ""
+        // document.querySelector("#parks-itinerary").innerHTML = ""
         console.log(card)   
         document.querySelector("#parks-itinerary").appendChild(card)
         addButton.classList.add("hide")
@@ -74,13 +74,13 @@ function resultElementHandler1 () {
 
         // If button ID contains "remove", append card to top of results div and hide removeButton/show addButton   
     } else if (targetButtonIdName === "remove") {
-        document.querySelector(`#parks-results`).prepend(card)
+        document.querySelector(`#results`).prepend(card)
         addButton.classList.remove("hide")
         removeButton.classList.add("hide")
     }
 }
 // Event listeners for dynamic add/remove buttons
-document.querySelector("#parks-results").addEventListener("click", resultElementHandler1)
+document.querySelector("#results").addEventListener("click", resultElementHandler1)
 document.querySelector("#parks-itinerary").addEventListener("click", resultElementHandler1)
 
 //Take the promise object containing the JSON data and feed it to the function

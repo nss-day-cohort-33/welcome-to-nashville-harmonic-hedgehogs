@@ -7,7 +7,7 @@ concertsButton.addEventListener("click", () => {
     fetch(`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=343&keyword=${concertsInput.value}&apikey=${app_keys[3].app_key}&size=6`)
         .then(response => response.json())
         .then(concertData => {
-            document.querySelector("#concert-results").innerHTML = ""
+            document.querySelector("#results").innerHTML = ""
            
             concertData._embedded.events.forEach(concert => {
                 // console.log(concertData)
@@ -28,7 +28,6 @@ concertsButton.addEventListener("click", () => {
         })
 })
 
-
 // Creates individual search result cards
 let num = 0;
 function createConcertResults(concertObject) {
@@ -43,14 +42,13 @@ function createConcertResults(concertObject) {
          
         <button id="add-${num}">add</button>
         <button class="hide" id="remove-${num}">remove</button>
-        
     </figure>
     `
 }
 
 // Prints to DOM
 function printConcertResultsToDom (concert) {
-    document.querySelector("#concert-results").innerHTML += createConcertResults(concert)
+    document.querySelector("#results").innerHTML += createConcertResults(concert)
 }
 
 // Function for organizing dynamic cards 
@@ -66,19 +64,19 @@ function resultElementHandler () {
     
     // If button ID contains "add", clear itinerary div, append card, and show removeButton/hide addButton 
     if (targetButtonIdName === "add") {
-        document.querySelector("#concert-itinerary").innerHTML = ""
+        // document.querySelector("#concert-itinerary").innerHTML = ""
         document.querySelector("#concert-itinerary").appendChild(card)
         addButton.classList.add("hide") 
         removeButton.classList.remove("hide") 
         
     // If button ID contains "remove", append card to top of results div and hide removeButton/show addButton   
     } else if (targetButtonIdName === "remove") {
-        document.querySelector("#concert-results").prepend(card)
+        document.querySelector("#results").prepend(card)
         addButton.classList.remove("hide")
         removeButton.classList.add("hide") 
     }
 
 }
 // Event listeners for dynamic add/remove buttons
-document.querySelector("#concert-results").addEventListener("click", resultElementHandler)
+document.querySelector("#results").addEventListener("click", resultElementHandler)
 document.querySelector("#concert-itinerary").addEventListener("click", resultElementHandler)
