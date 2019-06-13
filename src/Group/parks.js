@@ -8,19 +8,24 @@ document.querySelector("#parks-button").addEventListener("click", () => {
 });
 //this targets where on the DOM to push the data to and have it keep adding 
 function parksToDom(parksinfo, element) {
-    document.querySelector(`${element}`).innerHTML += parksinfo
+    document.querySelector(`#parks-results`).innerHTML += parksinfo
 }
 //this function allows the data from the API to show on the DOM
 
 function parksHTMLLayout(parksObj) {
+    num++
     return `
+    <figure id="card-S${num}">
+
     <h2>${parksObj.park_name}</h2>
     <h4>${parksObj.mapped_location_address}</h4>
-    <button>I'm Going!</button>
-    <button class ="hide">Changed my Mind</button>
-    </div>
-    `
+
+    <button id="add-${num}">I'm Going!</button>
+    <button class ="hide" id="remove">Changed my Mind</button>
+
+    </figure>`
 }
+
 //this is the call function to API 
 function parkSearch(input) {
     console.log('parksearch', input)
@@ -31,21 +36,28 @@ function parkSearch(input) {
         //Take the promise object returned by the fetch statement and convert it to a promise object 
         .then(parksResults => {
             parksResults.forEach(park => {
-                console.log(park)
+                
                 document.querySelector("#parks-results").innerHTML = ""
             })
             console.log('parkresults1', parksResults)
             for (let i = 0; i <= 10; i++) {
                 //this pushes the loop of the search into the DOM
-                parksToDom(parksHTMLLayout(parksResults[i]), "#parks-results")
+                parksToDom(parksHTMLLayout(parksResults[i]))
             }
         })
 }
+// console.log(parksToDom())
 // Function for organizing dynamic cards 
-function resultElementHandler(idName) {
-    console.log(event.target.id)
+
+// document.querySelector(`#parks-results-button`).addEventListener("click",
+// parkSearch(info))
+
+
+    // Function for organizing dynamic cards 
+function resultElementHandler1 () {
     const targetButtonIdName = event.target.id.split("-")[0]
     const targetButtonIdNumber = event.target.id.split("-")[1]
+    console.log(event.target.id)
 
     // Variables for dynamically created ID's for target buttons
     const card = document.getElementById(`card-${targetButtonIdNumber}`)
@@ -54,23 +66,23 @@ function resultElementHandler(idName) {
 
     // If button ID contains "add", clear itinerary div, append card, and show removeButton/hide addButton 
     if (targetButtonIdName === "add") {
-        document.querySelector(`#${idName}-itinerary`).innerHTML = ""
-        document.querySelector(`#${idName}-itinerary`).appendChild(card)
+        console.log(targetButtonIdName) 
+        document.querySelector("#parks-itinerary").innerHTML = ""
+        console.log(card)   
+        document.querySelector("#parks-itinerary").appendChild(card)
         addButton.classList.add("hide")
         removeButton.classList.remove("hide")
 
         // If button ID contains "remove", append card to top of results div and hide removeButton/show addButton   
     } else if (targetButtonIdName === "remove") {
-        document.querySelector(`#${idName}-results`).prepend(card)
+        document.querySelector(`#parks-results`).prepend(card)
         addButton.classList.remove("hide")
         removeButton.classList.add("hide")
     }
 }
-// // Event listeners for dynamic add/remove buttons
-// document.querySelector("#concert-results").addEventListener("click", resultElementHandler("#parks"))
-// document.querySelector("#concert-itinerary").addEventListener("click", resultElementHandler("#parks"))
-// document.querySelector("#park-results").addEventListener("click", resultElementHandler("#parks"))
-// document.querySelector("#park-itinerary").addEventListener("click", resultElementHandler("#parks"))
+// Event listeners for dynamic add/remove buttons
+document.querySelector("#parks-results").addEventListener("click", resultElementHandler1)
+document.querySelector("#parks-itinerary").addEventListener("click", resultElementHandler1)
 
 //Take the promise object containing the JSON data and feed it to the function
 // document.querySelector("results").innerHTML = ""
