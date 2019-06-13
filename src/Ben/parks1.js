@@ -12,18 +12,8 @@ function parksToDom(parksinfo, element) {
 }
 //this function allows the data from the API to show on the DOM
 
-function parksHTMLLayout(parksObj) {
-    return `
-    <h2>${parksObj.park_name}</h2>
-    <h4>${parksObj.mapped_location_address}</h4>
-
-    <button id="">I'm Going!</button>
-    <button class ="hide" id="remove">Changed my Mind</button>
-
-    </figure>`
-}
-
-let uniqueRestId = 0
+let uniqueParkNameId = 0
+let uniqueParkLocId = 0
 let uniqueButtonId = 0
 
 //this is the call function to API 
@@ -36,13 +26,14 @@ function parkSearch(input) {
         //Take the promise object returned by the fetch statement and convert it to a promise object 
         .then(parksResults => {
             parksResults.forEach(park => {
-                
+
                 document.querySelector("#parks-results").innerHTML = ""
             })
             console.log('parkresults1', parksResults)
             for (let i = 0; i <= 10; i++) {
                 uniqueButtonId++
-                uniqueParkId++
+                uniqueParkNameId++
+                uniqueParkLocId++
                 //this pushes the loop of the search into the DOM
                 parksToDom(parksHTMLLayout(parksResults[i]))
             }
@@ -53,9 +44,30 @@ function parkSearch(input) {
 
 // document.querySelector(`#parks-results-button`).addEventListener("click",
 // parkSearch(info))
-
 let resultField = document.getElementById("parks-results")
 
 resultField.addEventListener("click", () => {
-    if (event.target)
+    if (event.target.id.includes("parks-button-results-")) {
+        console.log("Event ID before split", event.target.id)
+        let buttonIdArray = event.target.id.split("-")
+        console.log("Event ID after split", buttonIdArray)
+        let parksElement = document.getElementById('parksName-${buttonIdArray[3]')=textcontent
+        putMyParkIntoTheItinerary(parksElement)
+    }
 })
+
+function parksHTMLLayout(parksObj) {
+    return `
+        <h2 id = parksName-${uniqueParkNameId}>${parksObj.park_name}</h2>
+        <h4 id = parkLoc-${uniqueParkLocId}>${parksObj.mapped_location_address}</h4>
+    
+        <button id="parks-button-results-${uniqueButtonId}">I'm Going!</button>
+    
+        </figure>`
+}
+
+
+
+function putMyParkIntoTheItinerary(parkElement) {
+    document.getElementById("parks-itinerary").innerHTML = parkElement;
+}

@@ -12,16 +12,16 @@ function parksToDom(parksinfo, element) {
 }
 //this function allows the data from the API to show on the DOM
 
+
 function parksHTMLLayout(parksObj) {
     num++
     return `
-    <figure id="card-S${num}">
-
-    <h2>${parksObj.park_name}</h2>
-    <h4>${parksObj.mapped_location_address}</h4>
+    <figure id="card-${num}">
+    <h3>Park Name: ${parksObj.park_name}</h3>
+    <h4>Park Address ${parksObj.mapped_location_address}</h4>
 
     <button id="add-${num}">I'm Going!</button>
-    <button class ="hide" id="remove">Changed my Mind</button>
+    <button class ="hide" id="remove-${num}">Changed my Mind</button>
 
     </figure>`
 }
