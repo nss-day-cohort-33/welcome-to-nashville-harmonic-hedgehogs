@@ -1,36 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <h1>Welcome to Nashville!</h1>
     <h4><em>Discover what's happening around town.</em></h4>
 
     <h2>What would you like to do today?</h2>
 
     <div>
-        <input type="text" id="parks-search" placeholder="Parks">
-        <button id="parks-button"> Search for Parks</button>
+      <select name="Parks" id="parks-search" placeholder="Parks">
+          <option value=""></option>
+      <option value="nature_center">Nature Center</option>
+      <option value="playground">Playground</option>
+      <option value="dog_park">Dog Park</option>
+      <option value="baseball_fields">Baseball Fields</option>
+      <option value="basketball_courts">Basketball Court</option>
+      <option value="volleyball">Volleyball Court</option>
+      <option value="soccer_fields">Soccer Field</option>
+      <option value="tennis_courts">Tennis Courts</option>
+      <option value="disc_golf">Disc Golf</option>
+      <option value="skate_park">Skate Park</option>
+      <option value="swimming_pool">Swimming Pool</option>
+      <option value="walk_jog_path">Walking Path</option>
+      <option value="hiking_trails">Hiking Trails</option>
+      <option value="mountain_bike_trails">Mountan Bike Trails</option>
+      <option value="lake">Lake</option>
+      <option value="historic_features">Historic Features</option>
+      </select>
+      <button id="parks-button">Search for Parks</button>
     </div>
 
     <div>
-        <input type="text" id="food-search" placeholder="Restaurants">
-        <button id="food-button"> Search for Food</button>
+      <input type="text" id="food-search" placeholder="Restaurants" />
+      <button id="food-button">Search for Food</button>
     </div>
 
     <div>
-        <input type="text" id="meetups-search" placeholder="Favorite hobby/pastime">
-        <button id="meetups-button"> Search for Meetups</button>
+      <input
+        type="text"
+        id="meetups-search"
+        placeholder="Favorite hobby/pastime"
+      />
+      <button id="meetups-button">Search for Meetups</button>
     </div>
 
     <div>
-        <input type="text" id="concerts-search" placeholder="Concerts">
-        <button id="concerts-button"> Search for Concerts</button>
+      <input type="text" id="concerts-search" placeholder="Concerts" />
+      <button id="concerts-button">Search for Concerts</button>
     </div>
 
     <h2>Results</h2>
@@ -39,5 +60,7 @@
     <h2>My Itinerary</h2>
     <section id="Itinerary"></section>
 
-</body>
+    <script src="group/keys.js"></script>
+    <script src="ben/parks.js"></script>
+  </body>
 </html>
