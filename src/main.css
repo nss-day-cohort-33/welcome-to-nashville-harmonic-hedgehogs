@@ -1,9 +1,31 @@
 #concert-results {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     width: 100%
-    
+}
+
+figure {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 1px solid grey;
+    margin: 0px;
+}
+figure img {
+    width: 205px;
+    height: 115px;
+}
+
+figure button {
+    height: 12px;
+    margin-top: 20px;
+}
+
+figcaption {
+    display: table-caption;
 }
 
 .hide {
