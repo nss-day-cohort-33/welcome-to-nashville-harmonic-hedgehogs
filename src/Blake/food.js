@@ -26,8 +26,8 @@ function foodHTML (test, i) {
     // console.log('test', test, 'i', i)
     // console.log('show me below html', test.restaurants[i].restaurant.name)
     return `
-    <div id="restaurant-id-${uniqueID}">
-    <img src="${test.restaurants[i].restaurant.featured_image}" alt="">
+    <div id="restaurant-id-${uniqueID}" class="search-style">
+    <img src="${test.restaurants[i].restaurant.featured_image}" alt="" width=200px height=auto>
     <h3>${test.restaurants[i].restaurant.name}</h3>
     <h4>${test.restaurants[i].restaurant.location.address}</h4>
     </div>
