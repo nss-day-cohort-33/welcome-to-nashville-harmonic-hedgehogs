@@ -1,11 +1,13 @@
 const concertsInput = document.querySelector("#concerts-search")
 const concertsButton = document.querySelector("#concerts-button")
 
+// Event listener for concert search button, pulls in API data and calls print function 
 concertsButton.addEventListener("click", () => {
     console.log(concertsButton.value)
     fetch(`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=343&keyword=${concertsInput.value}&apikey=${app_keys[3].app_key}`)
         .then(response => response.json())
         .then(concertData => {
+            document.querySelector("#concert-results").innerHTML = ""
            
             concertData._embedded.events.forEach(concert => {
                 // console.log(concertData)
@@ -26,8 +28,9 @@ concertsButton.addEventListener("click", () => {
         })
 })
 
-let num = 0;
 
+// Creates individual search result cards
+let num = 0;
 function createConcertResults(concertObject) {
     num++
     return `
@@ -44,27 +47,30 @@ function createConcertResults(concertObject) {
     `
 }
 
+// Prints to DOM
 function printConcertResultsToDom (concert) {
     document.querySelector("#concert-results").innerHTML += createConcertResults(concert)
 }
 
+// Function for organizing dynamic cards 
 function resultElementHandler () {
     console.log(event.target.id)
     const targetButtonIdName = event.target.id.split("-")[0]
     const targetButtonIdNumber = event.target.id.split("-")[1]
 
+    // Variables for dynamically created ID's for target buttons
     const card = document.getElementById(`card-${targetButtonIdNumber}`)
     const addButton = document.getElementById(`add-${targetButtonIdNumber}`)
     const removeButton = document.getElementById(`remove-${targetButtonIdNumber}`)
     
+    // If button ID contains "add", clear itinerary div, append card, and show removeButton/hide addButton 
     if (targetButtonIdName === "add") {
-        console.log(card)
         document.querySelector("#concert-itinerary").innerHTML = ""
         document.querySelector("#concert-itinerary").appendChild(card)
         addButton.classList.add("hide") 
         removeButton.classList.remove("hide") 
         
-       
+    // If button ID contains "remove", append card to top of results div and hide removeButton/show addButton   
     } else if (targetButtonIdName === "remove") {
         document.querySelector("#concert-results").prepend(card)
         addButton.classList.remove("hide")
@@ -72,6 +78,6 @@ function resultElementHandler () {
     }
 
 }
-
+// Event listeners for dynamic add/remove buttons
 document.querySelector("#concert-results").addEventListener("click", resultElementHandler)
 document.querySelector("#concert-itinerary").addEventListener("click", resultElementHandler)
