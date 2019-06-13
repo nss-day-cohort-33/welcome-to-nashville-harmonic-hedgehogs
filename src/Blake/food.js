@@ -20,16 +20,20 @@ let userInputLocation = document.querySelector("#food-search")
 
 
 //converts data fetched into html 
+let uniqueID = 0
 
 function foodHTML (test, i) {
     // console.log('test', test, 'i', i)
     // console.log('show me below html', test.restaurants[i].restaurant.name)
     return `
+    <div id="restaurant-id-${uniqueID}">
     <img src="${test.restaurants[i].restaurant.featured_image}" alt="">
     <h3>${test.restaurants[i].restaurant.name}</h3>
     <h4>${test.restaurants[i].restaurant.location.address}</h4>
-    <button id="save-food-button">Eat Here!</button>
+    </div>
+    <button id="save-button-${uniqueID}">Eat Here!</button>
     `
+
 }
 
 
@@ -52,12 +56,12 @@ document.querySelector("#food-button").addEventListener("click", () => {
     .then( rest => {
         
         //Loop through and pull name and address of first 10 results from search
-        document.querySelector("#food-results").innerHTML = ""
+        document.querySelector("#results").innerHTML = ""
  
         for(let i=0; i < 10; i++) {
             // console.log('first parameter', foodHTML(rest), 'i', i)
-
-            foodHTMLToDom(foodHTML( rest, i ), "#food-results")
+            uniqueID++
+            foodHTMLToDom(foodHTML( rest, i ), "#results")
 
             
             
@@ -76,4 +80,12 @@ document.querySelector("#food-button").addEventListener("click", () => {
 })
 
 
-
+document.querySelector("#results").addEventListener("click", () => {
+    if(event.target.id.includes("save-button")) {
+        console.log(event)
+        let buttonID = event.target.id.split("-")[2]
+        let matchedRest = document.querySelector(`#restaurant-id-${buttonID}`)
+        console.log(matchedRest)
+        document.querySelector("#food-itinerary").textContent = matchedRest.firstElementChild.nextElementSibling.textContent + " " + matchedRest.firstElementChild.nextElementSibling.nextElementSibling.textContent
+    }
+})
