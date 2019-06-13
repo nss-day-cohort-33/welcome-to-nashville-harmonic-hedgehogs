@@ -1,4 +1,4 @@
-
+//fetches data from zomato api
 function foodFetch(userSearch) {
 
     // console.log('paramater passed into function---', userSearch)
@@ -14,12 +14,17 @@ function foodFetch(userSearch) {
     // })
 }
 
+
+//variable locating where to look for user search
 let userInputLocation = document.querySelector("#food-search")
 
+
+//converts data fetched into html 
 function foodHTML (test, i) {
     // console.log('test', test, 'i', i)
     // console.log('show me below html', test.restaurants[i].restaurant.name)
     return `
+    <img src="${test.restaurants[i].restaurant.featured_image}" alt="">
     <h3>${test.restaurants[i].restaurant.name}</h3>
     <h4>${test.restaurants[i].restaurant.location.address}</h4>
     <button id="save-food-button">Eat Here!</button>
@@ -33,6 +38,8 @@ function foodHTMLToDom (infoHTML, element) {
 
 // console.log('user input location---', userInputLocation)
 
+
+//this makes the button clickable and print the first 10 results
 document.querySelector("#food-button").addEventListener("click", () => {
     fetch(`https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city&q=${userInputLocation.value}&apikey=${food_key}`, {
         headers: {
@@ -66,7 +73,6 @@ document.querySelector("#food-button").addEventListener("click", () => {
     })
 })
 
-// console.log('value in the input field---', userInputLocation.value)
 
 foodFetch(userInputLocation.value)
 
