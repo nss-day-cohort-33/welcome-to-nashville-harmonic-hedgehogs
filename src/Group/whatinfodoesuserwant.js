@@ -15,7 +15,8 @@ function createHTMLStringUsingAPIResults (thisObject, fromthissection) {
           <h3>${nameofItem}</h3>
           <h3>${addressofItem}</h3>
           <button id="saveitembutton-${i}">Save This Item</button>
-          </figure>`
+          </figure>
+          `
         }
       else {
         thiswillHoldHTMLforDOM += 
@@ -23,8 +24,9 @@ function createHTMLStringUsingAPIResults (thisObject, fromthissection) {
         <h3>${nameofItem}</h3>
         <h3>No Address Available</h3>
         <button id="saveitembutton-${i}">Save This Item</button>
-        </figure>`
-      }    
+        </figure>
+      `
+    }    
     }
     return thiswillHoldHTMLforDOM;
   }

@@ -19,10 +19,10 @@ function parksHTMLLayout(parksObj) {
     <h3>Park Name: ${parksObj.park_name}</h3>
     <h4>Park Address: ${parksObj.mapped_location_address}</h4>
 
-    <button id="add-${num}">I'm Going!</button>
     <button class ="hide" id="remove-${num}">Changed my Mind</button>
-
-    </figure>`
+    <button id="add-${num}">I'm Going!</button>
+        </figure>
+    `
 }
 
 //this is the call function to API 

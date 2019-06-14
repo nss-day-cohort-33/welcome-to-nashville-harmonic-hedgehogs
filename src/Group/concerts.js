@@ -42,7 +42,7 @@ function createConcertResults(concertObject) {
          
         <button id="add-${num}">add</button>
         <button class="hide" id="remove-${num}">remove</button>
-    </figure>
+        </figure>
     `
 }
 

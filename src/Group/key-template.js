@@ -1,19 +1,16 @@
 const app_keys = [{
     //park keys
-        app_id: "",
-        app_key: ""
+        app_token: ""
     },
     //food keys
     {
-        app_id: "",
         app_key: ""
     },
     //meetup keys
     {
-        app_id: "",
-        app_key: ""
+        token: ""
     },
-    //meetup keys
+    //concert keys
     {
         app_id: "",
         app_key: ""

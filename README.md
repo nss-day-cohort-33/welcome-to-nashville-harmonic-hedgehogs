@@ -1,6 +1,9 @@
 # Our own README.md file
 
 # Instructions for using this app
+Use any of the search input fields to find any of the areas (parks, food, meetups, and concerts) and put them in the results field by utilizing the button next to the specified field.  
+
+A new search will clear the current results under the RESULTS field. Once there are results there, there is a function to allow you to save one event in your Itinerary (in the itinerary field).
 
 ## Key-template instructions
 
@@ -11,9 +14,49 @@ We have included a key-template.js file. Grab API id/keys from the following sit
 * meetups -- using the [Eventbrite API](https://www.eventbrite.com/developer/v3/)
 * concerts -- using the [Ticketmaster API](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/)
 
+## This is how the Keys.js should be set up based on the key.template set up. 
+
+It is not required to have any ids for the Parks portion of the code. Please ensure that you put the ```keys.js``` file into your local ```.gitignore``` to not share your keys.
+
+
+```const app_keys = [{
+    //park keys
+        app_token: ""
+    },
+    //food keys
+    {
+        app_key: ""
+    },
+    //meetup keys
+    {
+        token: ""
+    },
+    //concert keys
+    {
+        app_id: "",
+        app_key: ""
+    }]
+```
+## Note
+Find the id for the city you live in
+   entity_type must be set to city
+   Your API key must be added as user-key to the headers configuration for your request
+
+```
+fetch("https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city&start=first&sort=rating", {
+        headers: {
+            "Accept": "application/json",
+            "user-key": "10101010101010101010"
+        }
+    })
+    .then(r => r.json())
+    .then(results => {
+    })
+```
+
 ___
 
-# Original Instructions
+<!-- # Original Instructions
 
 # Welcome to Nashville: Build an itinerary for a day trip to Music City
 
@@ -109,4 +152,4 @@ To start you off, here's an example of what the itinerary in your API might look
 ## Stretchier Goals
 * Add an affordance to finalize an itinerary, and start a new one.
   * Add ability to view one or all of the itineraries
-* Instead of displaying all the search fields, search results, and itinerary list at the same time, add a nav bar or other feature(s) for hiding/showing what the user wants to view
+* Instead of displaying all the search fields, search results, and itinerary list at the same time, add a nav bar or other feature(s) for hiding/showing what the user wants to view -->
