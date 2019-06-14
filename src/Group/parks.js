@@ -8,11 +8,7 @@ document.querySelector("#parks-button").addEventListener("click", () => {
 });
 //this targets where on the DOM to push the data to and have it keep adding 
 function parksToDom(parksinfo, element) {
-<<<<<<< HEAD
-    document.querySelector(`#results`).innerHTML += parksinfo
-=======
     document.querySelector("#results").innerHTML += parksinfo
->>>>>>> master
 }
 //this function allows the data from the API to show on the DOM in HTML format
 
